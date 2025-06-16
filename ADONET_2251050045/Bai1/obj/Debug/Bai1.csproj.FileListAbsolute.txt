@@ -1,0 +1,13 @@
+D:\2251050045\ADONET_2251050045\Bai1\bin\Debug\Bai1.exe.config
+D:\2251050045\ADONET_2251050045\Bai1\bin\Debug\Bai1.exe
+D:\2251050045\ADONET_2251050045\Bai1\bin\Debug\Bai1.pdb
+D:\2251050045\ADONET_2251050045\Bai1\obj\Debug\Bai1.csproj.AssemblyReference.cache
+D:\2251050045\ADONET_2251050045\Bai1\obj\Debug\Bai1.Bai1.resources
+D:\2251050045\ADONET_2251050045\Bai1\obj\Debug\Bai1.Properties.Resources.resources
+D:\2251050045\ADONET_2251050045\Bai1\obj\Debug\Bai1.csproj.GenerateResource.cache
+D:\2251050045\ADONET_2251050045\Bai1\obj\Debug\Bai1.csproj.CoreCompileInputs.cache
+D:\2251050045\ADONET_2251050045\Bai1\obj\Debug\Bai1.exe
+D:\2251050045\ADONET_2251050045\Bai1\obj\Debug\Bai1.pdb
+D:\2251050045\ADONET_2251050045\Bai1\bin\Debug\System.Configuration.ConfigurationManager.dll
+D:\2251050045\ADONET_2251050045\Bai1\bin\Debug\System.Configuration.ConfigurationManager.xml
+D:\2251050045\ADONET_2251050045\Bai1\obj\Debug\Bai1.csproj.CopyComplete

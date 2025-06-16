@@ -1,0 +1,14 @@
+D:\2251050045\ADONET_2251050045\StudentManagement\obj\Debug\StudentManagement.csproj.CoreCompileInputs.cache
+D:\2251050045\ADONET_2251050045\StudentManagement\bin\Debug\StudentManagement.exe.config
+D:\2251050045\ADONET_2251050045\StudentManagement\bin\Debug\StudentManagement.exe
+D:\2251050045\ADONET_2251050045\StudentManagement\bin\Debug\StudentManagement.pdb
+D:\2251050045\ADONET_2251050045\StudentManagement\bin\Debug\System.Configuration.ConfigurationManager.dll
+D:\2251050045\ADONET_2251050045\StudentManagement\bin\Debug\System.Configuration.ConfigurationManager.xml
+D:\2251050045\ADONET_2251050045\StudentManagement\obj\Debug\StudentManagement.csproj.CopyComplete
+D:\2251050045\ADONET_2251050045\StudentManagement\obj\Debug\StudentManagement.exe
+D:\2251050045\ADONET_2251050045\StudentManagement\obj\Debug\StudentManagement.pdb
+D:\2251050045\ADONET_2251050045\StudentManagement\obj\Debug\StudentManagement.csproj.AssemblyReference.cache
+D:\2251050045\ADONET_2251050045\StudentManagement\bin\Debug\System.Data.SqlClient.dll
+D:\2251050045\ADONET_2251050045\StudentManagement\bin\Debug\System.Data.SqlClient.xml
+D:\2251050045\ADONET_2251050045\StudentManagement\obj\Debug\StudentManagement.MainForm.resources
+D:\2251050045\ADONET_2251050045\StudentManagement\obj\Debug\StudentManagement.csproj.GenerateResource.cache
