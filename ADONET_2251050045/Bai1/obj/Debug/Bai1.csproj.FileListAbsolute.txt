@@ -11,3 +11,5 @@ D:\2251050045\ADONET_2251050045\Bai1\obj\Debug\Bai1.pdb
 D:\2251050045\ADONET_2251050045\Bai1\bin\Debug\System.Configuration.ConfigurationManager.dll
 D:\2251050045\ADONET_2251050045\Bai1\bin\Debug\System.Configuration.ConfigurationManager.xml
 D:\2251050045\ADONET_2251050045\Bai1\obj\Debug\Bai1.csproj.CopyComplete
+D:\2251050045\ADONET_2251050045\Bai1\bin\Debug\System.Data.SqlClient.dll
+D:\2251050045\ADONET_2251050045\Bai1\bin\Debug\System.Data.SqlClient.xml
