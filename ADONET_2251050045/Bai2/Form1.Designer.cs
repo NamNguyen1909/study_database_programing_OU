@@ -164,6 +164,7 @@ namespace Bai2
             // 
             // cbLoaiSP
             // 
+            this.cbLoaiSP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLoaiSP.FormattingEnabled = true;
             this.cbLoaiSP.Location = new System.Drawing.Point(565, 30);
             this.cbLoaiSP.Name = "cbLoaiSP";
@@ -172,6 +173,7 @@ namespace Bai2
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(565, 65);
             this.comboBox1.Name = "comboBox1";
