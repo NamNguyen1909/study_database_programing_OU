@@ -206,13 +206,13 @@ namespace Bai2
             this.groupBoxActions.Controls.Add(this.btnAdd);
             this.groupBoxActions.Location = new System.Drawing.Point(435, 185);
             this.groupBoxActions.Name = "groupBoxActions";
-            this.groupBoxActions.Size = new System.Drawing.Size(446, 121);
+            this.groupBoxActions.Size = new System.Drawing.Size(446, 99);
             this.groupBoxActions.TabIndex = 11;
             this.groupBoxActions.TabStop = false;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(27, 43);
+            this.btnAdd.Location = new System.Drawing.Point(26, 36);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(86, 42);
             this.btnAdd.TabIndex = 0;
@@ -222,7 +222,7 @@ namespace Bai2
             // 
             // btnDel
             // 
-            this.btnDel.Location = new System.Drawing.Point(132, 43);
+            this.btnDel.Location = new System.Drawing.Point(131, 36);
             this.btnDel.Name = "btnDel";
             this.btnDel.Size = new System.Drawing.Size(86, 42);
             this.btnDel.TabIndex = 1;
@@ -232,7 +232,7 @@ namespace Bai2
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(237, 43);
+            this.btnUpdate.Location = new System.Drawing.Point(236, 36);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(86, 42);
             this.btnUpdate.TabIndex = 2;
@@ -242,7 +242,7 @@ namespace Bai2
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(342, 43);
+            this.btnExit.Location = new System.Drawing.Point(341, 36);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(86, 42);
             this.btnExit.TabIndex = 3;
@@ -253,7 +253,7 @@ namespace Bai2
             // groupBoxData
             // 
             this.groupBoxData.Controls.Add(this.dataGridView1);
-            this.groupBoxData.Location = new System.Drawing.Point(12, 312);
+            this.groupBoxData.Location = new System.Drawing.Point(12, 290);
             this.groupBoxData.Name = "groupBoxData";
             this.groupBoxData.Size = new System.Drawing.Size(868, 322);
             this.groupBoxData.TabIndex = 12;
@@ -317,7 +317,7 @@ namespace Bai2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 646);
+            this.ClientSize = new System.Drawing.Size(893, 623);
             this.Controls.Add(this.groupBoxData);
             this.Controls.Add(this.groupBoxActions);
             this.Controls.Add(this.txtTimtenSP);
