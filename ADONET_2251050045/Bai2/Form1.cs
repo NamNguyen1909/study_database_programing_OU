@@ -14,18 +14,32 @@ namespace Bai2
 {
     public partial class Form1 : Form
     {
-        private SqlConnection connection;
         private string connectionString;
         private DataTable dataTable;
 
         public Form1()
         {
             InitializeComponent();
+            ConfigureDataGridView();
             InitializeDatabase();
             LoadData();
             PopulateComboBoxes();
             dataGridView1.SelectionChanged += new EventHandler(dataGridView1_SelectionChanged);
             txtTimtenSP.TextChanged += new EventHandler(txtTimtenSP_TextChanged);
+        }
+
+        private void ConfigureDataGridView()
+        {
+            // Đảm bảo các cột đã được định nghĩa trong Designer được liên kết đúng với dữ liệu
+            colProductID.DataPropertyName = "ProductID";
+            colProductName.DataPropertyName = "ProductName";
+            colUnitPrice.DataPropertyName = "UnitPrice";
+            colQuantityPerUnit.DataPropertyName = "QuantityPerUnit";
+            colCategoryName.DataPropertyName = "CategoryName";
+            colCompanyName.DataPropertyName = "CompanyName";
+
+            // Tắt tự động tạo cột để tránh thêm cột mới
+            dataGridView1.AutoGenerateColumns = false;
         }
 
         private void InitializeDatabase()
@@ -35,9 +49,8 @@ namespace Bai2
                 connectionString = ConfigurationManager.ConnectionStrings["QLSP"]?.ConnectionString;
                 if (string.IsNullOrEmpty(connectionString))
                 {
-                    throw new Exception("Không tìm thấy chuỗi kết nối 'StudentDB' trong tệp cấu hình.");
+                    throw new Exception("Không tìm thấy chuỗi kết nối 'QLSP' trong tệp cấu hình.");
                 }
-                connection = new SqlConnection(connectionString);
             }
             catch (Exception ex)
             {
@@ -48,66 +61,62 @@ namespace Bai2
 
         private void LoadData()
         {
-            try
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-                string query = @"
-                    SELECT p.ProductID, p.ProductName, p.UnitPrice, p.QuantityPerUnit, 
-                           c.CategoryName, s.CompanyName
-                    FROM Products p
-                    JOIN Categories c ON p.CategoryID = c.CategoryID
-                    JOIN Suppliers s ON p.SupplierID = s.SupplierID";
+                try
+                {
+                    connection.Open();
+                    string query = @"
+                        SELECT p.ProductID, p.ProductName, p.UnitPrice, p.QuantityPerUnit, 
+                               c.CategoryName, s.CompanyName
+                        FROM Products p
+                        JOIN Categories c ON p.CategoryID = c.CategoryID
+                        JOIN Suppliers s ON p.SupplierID = s.SupplierID";
 
-                SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                dataGridView1.DataSource = dataTable;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                    connection.Close();
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    dataGridView1.DataSource = dataTable;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải dữ liệu: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void PopulateComboBoxes()
         {
-            try
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
+                try
+                {
+                    connection.Open();
 
-                // Populate Categories combo box
-                string categoryQuery = "SELECT CategoryID, CategoryName FROM Categories";
-                SqlDataAdapter categoryAdapter = new SqlDataAdapter(categoryQuery, connection);
-                DataTable categoryTable = new DataTable();
-                categoryAdapter.Fill(categoryTable);
-                cbLoaiSP.DataSource = categoryTable;
-                cbLoaiSP.DisplayMember = "CategoryName";
-                cbLoaiSP.ValueMember = "CategoryID";
-                cbLoaiSP.SelectedIndex = -1;
+                    // Populate Categories combo box
+                    string categoryQuery = "SELECT CategoryID, CategoryName FROM Categories";
+                    SqlDataAdapter categoryAdapter = new SqlDataAdapter(categoryQuery, connection);
+                    DataTable categoryTable = new DataTable();
+                    categoryAdapter.Fill(categoryTable);
+                    cbLoaiSP.DataSource = categoryTable;
+                    cbLoaiSP.DisplayMember = "CategoryName";
+                    cbLoaiSP.ValueMember = "CategoryID";
+                    cbLoaiSP.SelectedIndex = -1;
 
-                // Populate Suppliers combo box
-                string supplierQuery = "SELECT SupplierID, CompanyName FROM Suppliers";
-                SqlDataAdapter supplierAdapter = new SqlDataAdapter(supplierQuery, connection);
-                DataTable supplierTable = new DataTable();
-                supplierAdapter.Fill(supplierTable);
-                comboBox1.DataSource = supplierTable;
-                comboBox1.DisplayMember = "CompanyName";
-                comboBox1.ValueMember = "SupplierID";
-                comboBox1.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi tải dữ liệu vào combobox: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                    connection.Close();
+                    // Populate Suppliers combo box
+                    string supplierQuery = "SELECT SupplierID, CompanyName FROM Suppliers";
+                    SqlDataAdapter supplierAdapter = new SqlDataAdapter(supplierQuery, connection);
+                    DataTable supplierTable = new DataTable();
+                    supplierAdapter.Fill(supplierTable);
+                    comboBox1.DataSource = supplierTable;
+                    comboBox1.DisplayMember = "CompanyName";
+                    comboBox1.ValueMember = "SupplierID";
+                    comboBox1.SelectedIndex = -1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải dữ liệu vào combobox: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -156,33 +165,33 @@ namespace Bai2
             if (!ValidateInputs())
                 return;
 
-            try
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-                string query = @"
-                    INSERT INTO Products (ProductName, UnitPrice, QuantityPerUnit, CategoryID, SupplierID)
-                    VALUES (@ProductName, @UnitPrice, @QuantityPerUnit, @CategoryID, @SupplierID)";
+                try
+                {
+                    connection.Open();
+                    string query = @"
+                        INSERT INTO Products (ProductName, UnitPrice, QuantityPerUnit, CategoryID, SupplierID)
+                        VALUES (@ProductName, @UnitPrice, @QuantityPerUnit, @CategoryID, @SupplierID)";
 
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@ProductName", txtTenSP.Text.Trim());
-                command.Parameters.AddWithValue("@UnitPrice", decimal.Parse(txtDongia.Text));
-                command.Parameters.AddWithValue("@QuantityPerUnit", txtSoluong.Text.Trim());
-                command.Parameters.AddWithValue("@CategoryID", cbLoaiSP.SelectedValue);
-                command.Parameters.AddWithValue("@SupplierID", comboBox1.SelectedValue);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ProductName", txtTenSP.Text.Trim());
+                        command.Parameters.AddWithValue("@UnitPrice", decimal.Parse(txtDongia.Text));
+                        command.Parameters.AddWithValue("@QuantityPerUnit", int.Parse(txtSoluong.Text));
+                        command.Parameters.AddWithValue("@CategoryID", cbLoaiSP.SelectedValue);
+                        command.Parameters.AddWithValue("@SupplierID", comboBox1.SelectedValue);
 
-                command.ExecuteNonQuery();
-                MessageBox.Show("Thêm sản phẩm thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadData();
-                ClearInputs();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi thêm sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                    connection.Close();
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Thêm sản phẩm thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadData();
+                        ClearInputs();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi thêm sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -198,27 +207,27 @@ namespace Bai2
             if (result != DialogResult.Yes)
                 return;
 
-            try
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-                int productId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["colProductID"].Value);
-                string query = "DELETE FROM Products WHERE ProductID = @ProductID";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@ProductID", productId);
+                try
+                {
+                    connection.Open();
+                    int productId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["colProductID"].Value);
+                    string query = "DELETE FROM Products WHERE ProductID = @ProductID";
 
-                command.ExecuteNonQuery();
-                MessageBox.Show("Xóa sản phẩm thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadData();
-                ClearInputs();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi xóa sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                    connection.Close();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ProductID", productId);
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Xóa sản phẩm thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadData();
+                        ClearInputs();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi xóa sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -233,40 +242,40 @@ namespace Bai2
             if (!ValidateInputs())
                 return;
 
-            try
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                connection.Open();
-                int productId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["colProductID"].Value);
-                string query = @"
-                    UPDATE Products 
-                    SET ProductName = @ProductName, 
-                        UnitPrice = @UnitPrice, 
-                        QuantityPerUnit = @QuantityPerUnit, 
-                        CategoryID = @CategoryID, 
-                        SupplierID = @SupplierID
-                    WHERE ProductID = @ProductID";
+                try
+                {
+                    connection.Open();
+                    int productId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["colProductID"].Value);
+                    string query = @"
+                        UPDATE Products 
+                        SET ProductName = @ProductName, 
+                            UnitPrice = @UnitPrice, 
+                            QuantityPerUnit = @QuantityPerUnit, 
+                            CategoryID = @CategoryID, 
+                            SupplierID = @SupplierID
+                        WHERE ProductID = @ProductID";
 
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@ProductID", productId);
-                command.Parameters.AddWithValue("@ProductName", txtTenSP.Text.Trim());
-                command.Parameters.AddWithValue("@UnitPrice", decimal.Parse(txtDongia.Text));
-                command.Parameters.AddWithValue("@QuantityPerUnit", txtSoluong.Text.Trim());
-                command.Parameters.AddWithValue("@CategoryID", cbLoaiSP.SelectedValue);
-                command.Parameters.AddWithValue("@SupplierID", comboBox1.SelectedValue);
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ProductID", productId);
+                        command.Parameters.AddWithValue("@ProductName", txtTenSP.Text.Trim());
+                        command.Parameters.AddWithValue("@UnitPrice", decimal.Parse(txtDongia.Text));
+                        command.Parameters.AddWithValue("@QuantityPerUnit", int.Parse(txtSoluong.Text));
+                        command.Parameters.AddWithValue("@CategoryID", cbLoaiSP.SelectedValue);
+                        command.Parameters.AddWithValue("@SupplierID", comboBox1.SelectedValue);
 
-                command.ExecuteNonQuery();
-                MessageBox.Show("Cập nhật sản phẩm thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadData();
-                ClearInputs();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi cập nhật sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (connection.State == ConnectionState.Open)
-                    connection.Close();
+                        command.ExecuteNonQuery();
+                        MessageBox.Show("Cập nhật sản phẩm thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadData();
+                        ClearInputs();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi cập nhật sản phẩm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
