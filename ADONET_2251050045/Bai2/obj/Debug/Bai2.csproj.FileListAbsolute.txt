@@ -1,0 +1,13 @@
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\bin\Debug\Bai2.exe.config
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\bin\Debug\Bai2.exe
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\bin\Debug\Bai2.pdb
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\obj\Debug\Bai2.csproj.AssemblyReference.cache
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\obj\Debug\Bai2.Form1.resources
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\obj\Debug\Bai2.Properties.Resources.resources
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\obj\Debug\Bai2.csproj.GenerateResource.cache
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\obj\Debug\Bai2.csproj.CoreCompileInputs.cache
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\obj\Debug\Bai2.exe
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\obj\Debug\Bai2.pdb
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\bin\Debug\System.Configuration.ConfigurationManager.dll
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\bin\Debug\System.Configuration.ConfigurationManager.xml
+F:\Nam\CODE\University\HKIX\database_programing\study_database_programing_OU\ADONET_2251050045\Bai2\obj\Debug\Bai2.csproj.CopyComplete
