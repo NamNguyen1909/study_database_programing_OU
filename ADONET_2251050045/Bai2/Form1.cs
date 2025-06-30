@@ -212,6 +212,7 @@ namespace Bai2
                 try
                 {
                     connection.Open();
+                    //Lấy dòng được select trong datagridview
                     int productId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["colProductID"].Value);
                     string query = "DELETE FROM Products WHERE ProductID = @ProductID";
 
