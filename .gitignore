@@ -1,0 +1,57 @@
+# Build Results
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code
+.vscode/
+
+# Visual Studio specific folders
+.vs/
+
+# NuGet packages
+*.nupkg
+packages/
+project.lock.json
+project.assets.json
+*.nuspec
+
+# Auto-generated designer files (optional)
+*.Designer.cs
+
+# Publish folder
+publish/
+*.publish.xml
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+*.svclog
+
+# Database files
+*.mdf
+*.ldf
+
+# Local configuration files
+appsettings.Development.json
+secrets.json
+
+# Windows image cache
+Thumbs.db
+ehthumbs.db
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# OS generated files
+.DS_Store
+desktop.ini
