@@ -2,7 +2,7 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using System.Data.Entity;
+using System.Data.Entity;   
 
 namespace QLSV_DBFirst
 {
